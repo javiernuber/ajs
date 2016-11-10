@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Example</title>
+    </head>
+    <body ng-app="myApp">
+        <div class="father" ng-controller="FatherController as father">
+            {{ father.name }}
+            <div class="child" ng-controller="ChildController as child">
+                {{ child.name }}
+            </div>
+        </div>
+
+        <script src="angular.min.js"></script>
+        <script>
+            var app = angular.module('myApp', [])
+            app.controller('FatherController', function () {
+                this.name = "Father"
+            })
+            app.controller('ChildController', function () {
+                this.name = "Child"
+            })
+        </script>
+    </body>
+</html>

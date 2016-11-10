@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Example</title>
+    </head>
+    <body ng-app="myApp">
+        <table ng-controller="UsersController as vm">
+            <tr ng-repeat="user in vm.users">
+                <td>{{ user.name }}</td>
+                <td>{{ user.nif }}</td>
+                <td>{{ user.points }}</td>
+                <td><button ng-click="vm.vote(user)">Vote</button></td>
+            </tr>
+        </table>
+
+        <script src="angular.min.js"></script>
+        <script>
+            var app = angular.module('myApp', [])
+
+            app.controller('UsersController', function () {
+                var vm = this
+
+                vm.users = [
+                    {
+                        name: 'Javier Núñez Berrocoso',
+                        nif: '33434343D',
+                        points: 0
+                    },
+                    {
+                        name: 'Pedro Hernadez Martín',
+                        nif: '23233232T',
+                        points: 0
+                    },
+                    {
+                        name: 'Juanjo Galan Lopez',
+                        nif: '12121212B',
+                        points: 0
+                    }
+                ]
+
+                vm.vote = function (user) {
+                    user.points += 1
+                }
+            })
+        </script>
+    </body>
+</html>
