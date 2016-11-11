@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Example</title>
+    </head>
+    <body ng-app="myApp">
+        <div ng-controller="MainController as main">
+            <h3>Filter uppercase: {{ main.string1 | uppercase }}</h3>
+            <h3>Filter lowercase: {{ main.string2 | lowercase }}</h3>
+            <h3>Filter currency: {{ main.num | currency }}</h3>
+            <h3>Filter date: {{ main.date | date : 'dd/MM/yyyy'}}</h3>
+            <h3>Filter order by:</h3>
+            <ul>
+                <li ng-repeat=" user in main.list | orderBy : 'name'">
+                    {{ user.name }}
+                </li>
+            </ul>
+        </div>
+
+        <script src="angular.min.js"></script>
+        <script src="node_modules/angular-i18n/angular-locale_es-es.js"></script>
+        <script>
+            var app = angular.module('myApp', [])
+
+            app.controller('MainController', MainController)
+
+            function MainController () {
+                var main = this
+
+                main.string1 = 'Test string'
+                main.string2 = 'TEST STRING'
+                main.num = 56.25
+                main.date = new Date()
+                main.list = [
+                    {name: 'Javi'},
+                    {name: 'Pedro'},
+                    {name: 'Juan'},
+                    {name: 'Maria'},
+                    {name: 'Tomás'},
+                    {name: 'Carlos'}
+                ]
+            }
+        </script>
+    </body>
+</html>
