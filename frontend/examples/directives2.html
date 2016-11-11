@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Example</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body ng-app="myApp">
+        <div ng-controller="MainController as main">
+            <p ng-show="main.showParagraph">Expetenda tincidunt in sed, ex partem placerat sea, porro commodo ex eam. His putant aeterno interesset at. Usu ea mundi tincidunt, omnium virtute aliquando ius ex. </p>
+            <p ng-if="main.showParagraph">Expetenda tincidunt in sed, ex partem placerat sea, porro commodo ex eam. His putant aeterno interesset at. Usu ea mundi tincidunt, omnium virtute aliquando ius ex. </p>
+
+            <p ng-class="main.textRed ? 'text-red' : ''" >Expetenda tincidunt in sed, ex partem placerat sea, porro commodo ex eam. His putant aeterno interesset at. Usu ea mundi tincidunt, omnium virtute aliquando ius ex. </p>
+
+            <button ng-click="main.changeVisibility()">Click!!</button>
+            <button ng-mouseover="main.changeVisibility()">Mouseover!!</button>
+            <button ng-click="main.changeClass()">Change class!!</button>
+        </div>
+
+        <script src="angular.min.js"></script>
+        <script>
+            var app = angular.module('myApp', [])
+
+            app.controller('MainController', MainController)
+
+            function MainController () {
+                var main = this
+
+                main.showParagraph = false;
+                main.textRed = false
+
+                main.changeVisibility = function () {
+                    main.showParagraph = !main.showParagraph;
+                }
+                main.changeClass = function () {
+                    main.textRed = !main.textRed
+                }
+            }
+        </script>
+    </body>
+</html>
