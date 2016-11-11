@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Example</title>
+    </head>
+    <body ng-app="myApp">
+        <div ng-controller="MainController as main">
+            <form>
+                <input type="text" ng-model="main.user.username">
+                <input type="password" ng-model="main.user.password">
+                <button ng-click="main.send()">Send</button>
+            </form>
+
+            <pre>
+                {{ main.user | json }}
+            </pre>
+        </div>
+
+        <script src="angular.min.js"></script>
+        <script>
+            var app = angular.module('myApp', [])
+
+            app.controller('MainController', function () {
+                var vm = this
+
+                vm.user = {
+                    username: '',
+                    password: ''
+                }
+                
+                vm.send = function () {
+                    console.log('sending...', JSON.stringify(vm.user))
+                }
+            })
+
+        </script>
+    </body>
+</html>
