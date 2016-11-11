@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Example</title>
+    </head>
+    <body ng-app="myApp">
+        <div ng-controller="MainController as main">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Points</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="user in main.list | orderBy : 'points'">
+                        <td>{{user.name}}</td>
+                        <td>{{user.points | grade}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <script src="angular.min.js"></script>
+        <script>
+            var app = angular.module('myApp', [])
+
+            app.controller('MainController', MainController)
+
+            function MainController ($filter) {
+                var main = this
+
+                main.list = [
+                    {name: 'Javi', points: 6},
+                    {name: 'Pedro', points: 8},
+                    {name: 'Juan', points: 5},
+                    {name: 'Maria', points: 3},
+                    {name: 'Tomás', points: 7},
+                    {name: 'Carlos', points: 10}
+                ]
+
+                var text = $filter('grade')(6)
+                window.alert(text)
+            }
+            
+            app.filter('grade', function () {
+                return function (input) {
+                    if (input < 5) {
+                        return 'Fail'
+                    } else if (input >= 5 && input < 7) {
+                        return 'Pass'
+                    } else if (input >= 7 && input < 9) {
+                        return 'Outstanding'
+                    } else  {
+                        return 'Excellent'
+                    }
+                }
+            })
+
+        </script>
+    </body>
+</html>
