@@ -28,7 +28,7 @@
             if (file.files.length === 0) {
                 return
             }
-            
+
             reader = new window.FileReader()
             reader.onloadend = function () {
                 vm.user.photo = reader.result
