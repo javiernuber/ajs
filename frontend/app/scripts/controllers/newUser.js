@@ -20,7 +20,11 @@
         }
 
         vm.send = function () {
-            console.log(JSON.stringify(vm.user))
+            if (vm.newUserForm.$invalid) {
+                console.log('Error!!')
+            } else {
+                console.log(JSON.stringify(vm.user))
+            }
         }
 
         vm.fileChange = function (file) {
